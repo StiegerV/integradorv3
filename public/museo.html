@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museo metropolitano del arte</title>
+   
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+
+<body>
+    <div id="filtrado">
+    <H1 class="titulo">EL Museo metropolitano del arte</H1>
+    
+        <p>Buscar obras por:</p>
+
+        <label for="departamento">departamentos</label>
+        <select name="departamento" id="departamentos">
+            <option value="99">seleccione un departamento</option>
+        </select>
+
+        <label for="palabra">palabra clave</label>
+        <input type="text" name="palabra" id="palabra" >
+
+        <label for="localizacion">localizacion</label>
+        <input type="text" id="localizacion" list="locaciones">
+        <datalist id="locaciones"></datalist>
+    
+    <input type="button" value="Buscar" onclick="buscar()">
+ 
+</div>
+
+    <div id="botones_paginado">
+        <input type="button" value="atras" id="atras" onclick="atras()">
+        <input type="button" value="adelante" id="adelante" onclick="adelante()">
+        </div>
+
+    <div id="contenedorGeneral" class="contenedorGeneral">
+        <div class="carta">
+            <img src="https://img1.picmix.com/output/stamp/normal/8/8/2/3/2453288_4eb09.png" alt="">
+            <h3 id="titulo">Titulo</h3>
+            <h4 id="cultura">cultura</h4>
+            <h4 id="dinastia">dinastia</h5>
+
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit ratione, eligendi sit adipisci eius
+                laboriosam molestias saepe quasi eaque natus dolore ipsa cupiditate aut laudantium quo quidem ullam nemo
+                alias?</p>
+        </div>
+      
+
+    </div>
+
+   
+    <script src="/cliente.js"></script>
+</body>
+
+</html>

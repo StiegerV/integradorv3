@@ -1,0 +1,66 @@
+/* Estilo general para el cuerpo de la página */
+body {
+  font-family: Arial, sans-serif; /* Se agrega una fuente por defecto para mejor legibilidad */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor general para organizar la grilla */
+.contenedorGeneral {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Crea una grilla de 4 columnas */
+  gap: 20px; /* Espacio entre las tarjetas */
+  padding: 20px; /* Espacio interno del contenedor */
+}
+
+/* Estilo para cada tarjeta de objeto de arte */
+.carta {
+  background-color: #f0f8ff; /* Color de fondo claro para las tarjetas */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Para que la imagen no se desborde */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para un efecto elevado */
+  transition: transform 0.3s; /* Transición suave para el efecto hover */
+}
+
+.carta:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+}
+
+/* Estilo para el contenido de cada tarjeta */
+.carta-contentenido {
+  padding: 15px; /* Espacio interno */
+  color: black;
+}
+
+.carta-contentido h2 {
+  margin: 0; /* Elimina márgenes por defecto en los títulos */
+  font-size: 1.5em; /* Tamaño del texto del título */
+}
+
+.carta-contentido p {
+  margin: 5px 0; /* Márgenes para los párrafos */
+  font-size: 1em; /* Tamaño del texto para la cultura y dinastía */
+}
+
+/* Estilo para las imágenes dentro de las tarjetas */
+.carta img {
+  padding-left: 10%;
+  padding-right: 10%;
+  width: 80%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+  height: 40%; /* Mantiene la proporción de la imagen */
+  display: block; /* Elimina el espacio extra debajo de la imagen */
+}
+
+h1 {
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+#filtrado {
+  background-color: #2c3e50; 
+  color: #ecf0f1; 
+  padding: 20px 0; 
+  text-align: center;   
+}
