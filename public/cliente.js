@@ -62,7 +62,10 @@ async function cargarLocacion() {
   });
 }
 
+var objetos;
+
 function buscar() {
+  showLoader()
   let dpt = document.getElementById("departamentos").value;
   let palabra = document.getElementById("palabra").value;
   let localizacion = document.getElementById("localizacion").value;
@@ -82,9 +85,16 @@ function buscar() {
     .then((respuesta) => respuesta.json())
     .then((datos) => {
       document.getElementById("contenedorGeneral").innerHTML = "";
-      for (const element of datos) {
+      //global contiene todos los objetos ya paginados
+      objetos = paginado(datos);
+      pagina = 0;
+      document.getElementById("pagina").innerHTML = `pagina:${pagina + 1} de ${
+        objetos.length - 1
+      }`;
+      for (const element of objetos[0]) {
         hacerCard(element);
       }
+      hideLoader()
     });
 }
 
@@ -171,6 +181,56 @@ function hacerCard(obra) {
 
   carta.classList.add("carta");
   document.getElementById("contenedorGeneral").appendChild(carta);
+}
+
+var pagina = 0;
+
+function paginado(ids) {
+  let a = 20;
+  const segmentos = [];
+
+  for (let i = 0; i < ids.length; i += a) {
+    segmentos.push(ids.slice(i, i + a));
+  }
+  return segmentos;
+}
+
+function atras() {
+  pagina--;
+  if (pagina < 0) {
+    pagina = 0;
+  }
+  document.getElementById("contenedorGeneral").innerHTML = "";
+  document.getElementById("pagina").innerHTML = `pagina:${pagina+1} de ${
+    objetos.length - 1
+  }`;
+  for (const element of objetos[pagina]) {
+    hacerCard(element);
+  }
+
+  console.log(pagina);
+}
+
+function adelante() {
+  pagina++;
+  if (pagina > objetos.length - 1) {
+    pagina = objetos.length - 1;
+  }
+  document.getElementById("contenedorGeneral").innerHTML = "";
+  document.getElementById("pagina").innerHTML = `pagina:${pagina+1} de ${
+    objetos.length - 1
+  }`;
+  for (const element of objetos[pagina]) {
+    hacerCard(element);
+  }
+}
+
+const loader = document.getElementById("carga");
+function showLoader() {
+  loader.classList.add("show-carga");
+}
+function hideLoader() {
+  loader.classList.remove("show-carga");
 }
 cargarLocacion();
 cargarDepartamentos();
