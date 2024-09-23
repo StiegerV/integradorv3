@@ -68,16 +68,16 @@ h1 {
 .cont-carga {
   text-align: center;
   margin: auto;
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   -webkit-transition: all 1s ease;
   -o-transition: all 1s ease;
   transition: all 1s ease;
 }
 
 .carga {
-  border: 5px solid white;
-  border-top-color: #8b4513;
+  border: 25px solid rgb(255, 255, 255);
+  border-top-color: #6d6b69;
   height: 50%;
   width: 50%;
   border-radius: 100%;
@@ -99,4 +99,26 @@ h1 {
   to {
     transform: rotate(360deg);
   }
+}
+
+#imagenes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* Espacio entre imágenes */
+  margin-top: 20px;
+}
+
+#imagenes img {
+  max-width: 20%;
+  max-height: 20%;
+  height: auto;
+  border: 2px solid #ccc; /* Borde ligero alrededor de las imágenes */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: transform 0.3s; /* Efecto de transición al hacer hover */
+}
+
+#imagenes img:hover {
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
 }

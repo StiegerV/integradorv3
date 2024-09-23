@@ -135,6 +135,7 @@ function hacerCard(obra) {
   let titulo = document.createElement("h3");
   let cultura = document.createElement("h4");
   let dinastia = document.createElement("h4");
+  let id=obra.objectID
 
   if (obra.primaryImage !== "") {
     img.src = obra.primaryImageSmall;
@@ -164,11 +165,14 @@ function hacerCard(obra) {
   }
   carta.appendChild(dinastia);
 
-  if (obra.additionalImages[0] !== "") {
+  if (obra.additionalImages == "") {
+    
+  }else{
+    console.log('id del objeto:'+obra.objectID)
     let link = document.createElement("a");
     let boton = document.createElement("button");
     boton.innerHTML = "mas imagenes";
-    link.href = "/imgExtra.html";
+    link.href = `imgExtra.html?objeto=${obra.objectID}`;
     link.appendChild(boton);
     carta.appendChild(link);
   }

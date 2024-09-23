@@ -24,7 +24,10 @@ app.post("/", async (req, res) => {
   let url = req.body.url;
   let ids = await traerIds(url);
   //trae unicamente 500
- ids=ids.slice(0, Math.min(ids.length, 500));
+  if (ids.length > 500) {
+    ids = ids.slice(0, Math.min(ids.length, 500));
+  }
+
   //fetch a cada id
   let objetos = await objetosPromise(ids);
 
@@ -79,13 +82,12 @@ async function traduccion(objetos) {
 
     // todas las promesas de forma asincronica
     await Promise.all(promises);
-
   }
 }
 
 //esto de map es para poder devolver algo en el caso de que una promesa falle y hacerlo mas rapido con promise.all en ver de fetch
 async function objetosPromise(ids) {
-  if (ids.length > 0) {
+  try {
     let promesas = ids.map(async (ids) => {
       try {
         let respuesta = await fetch(
@@ -105,19 +107,39 @@ async function objetosPromise(ids) {
 
     let objetos = resultados.filter((resultado) => resultado !== null);
     return objetos;
-  } else {
-    console.log("no se encontro ningun elemento");
+  } catch (error) {
+    return {
+      primaryImage:
+        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ImwlsSyjnRCC7UjcosGPRgHaJ4%26pid%3DApi&f=1&ipt=5431903f64a2077a9fc47065ea33a62609b2d6e1e9a93d7b7f28dc70faa33056&ipo=images ",
+      title: "No se encontraron obras",
+      culture: " ",
+      dynasty: "  ",
+    };
   }
 }
 
 //trae conjuntos de id a partir del filtrado
 async function traerIds(url) {
-  let idObj = ["lil shit"];
-  let respuesta = await fetch(url);
-  //checkeamos que no se halla reventado la api o nos tire un 404
-  if (respuesta.ok) {
-    let datos = await respuesta.json();
-    idObj = datos.objectIDs;
+  let idObj = [];
+
+  try {
+    let respuesta = await fetch(url);
+
+    // Check if the response is OK
+    if (respuesta.ok) {
+      let datos = await respuesta.json();
+
+      // Ensure that objectIDs exist and are an array
+      if (Array.isArray(datos.objectIDs)) {
+        idObj = datos.objectIDs;
+      } else {
+        console.warn("No se encontradon objectIDs en la respuesta.");
+      }
+    } else {
+      console.error(`Fetch error: ${respuesta.status} ${respuesta.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error en el fetch :", error);
   }
 
   return idObj;
