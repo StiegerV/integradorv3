@@ -37,8 +37,8 @@ app.post("/Buscar", async (req, res) => {
   let url = req.body.url;
   let ids = await traerIds(url);
   //trae unicamente 150 por vercek
-  if (ids.length > 500) {
-    ids = ids.slice(0, Math.min(ids.length, 500));
+  if (ids.length > 150) {
+    ids = ids.slice(0, 150);
   }
 
   //fetch a cada id
