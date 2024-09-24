@@ -2,22 +2,23 @@
 body {
   display: flex;
   flex-direction: column;
-  font-family: Arial, sans-serif; /* Se agrega una fuente por defecto para mejor legibilidad */
+  font-family: Arial, sans-serif; /* Default font for better readability */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F152%2F718%2Foriginal%2Fdark-floral-or-ornament-seamless-pattern-background-elegant-luxury-texture-backgrounds-vector.jpg&f=1&nofb=1&ipt=bac6c5350d53d6a8989385c55a289f781cbeb6bf05960eac4d309514b0412e8b&ipo=images");
-  background-repeat: repeat;
-  background-size: cover;
-  background-position: center;
-  #footer{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    background-color: rgb(76, 83, 90);
-  }
+  background-repeat: repeat; 
+  background-size: cover; 
+  background-position: center; 
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(76, 83, 90);
 }
 
 /* Contenedor general para organizar la grilla */
