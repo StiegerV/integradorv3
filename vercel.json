@@ -8,8 +8,7 @@
     ],
     "routes": [
       {
-        "src": "/cliente.js",
-        "dest": "/public/cliente.js"
+        "handle": "filesystem"
       },
       {
         "src": "/(.*)",
