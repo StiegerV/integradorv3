@@ -4,6 +4,7 @@ import path from "path";
 import translate from "node-google-translate-skidz";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import fetch from 'node-fetch'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
@@ -11,14 +12,14 @@ app.use(cors());
 const port = process.env.PORT || 8000;
 // Obtener __filename y __dirname
 
-let fetch;
+/*let fetch;
 (async () => {
   const module = await import("node-fetch");
   fetch = module.default;
-})();
+})();*/
 
 // setea el favicon icono del documento
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+//app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 app.use(express.static(__dirname + "/public/"));
 
