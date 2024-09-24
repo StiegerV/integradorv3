@@ -5,7 +5,7 @@ import translate from "node-google-translate-skidz";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
-const _dirname = dirname(_filename);
+const __dirname = dirname(__filename);
 const app = express();
 app.use(cors());
 const port = process.env.PORT || 8000;
@@ -13,14 +13,14 @@ const port = process.env.PORT || 8000;
 
 let fetch;
 (async () => {
-    const module = await import('node-fetch');
-    fetch = module.default;
+  const module = await import("node-fetch");
+  fetch = module.default;
 })();
 
 // setea el favicon icono del documento
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
-app.use(express.static(__dirname + '/public/'));
+app.use(express.static(__dirname + "/public/"));
 
 /* middleware que parsea el body de la url. necesario para leer los datos enviados por el form*/
 app.use(express.urlencoded({ extended: true }));
