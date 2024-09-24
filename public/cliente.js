@@ -65,7 +65,7 @@ async function cargarLocacion() {
 var objetos;
 
 function buscar() {
-  showLoader();
+  showLoader()
   let dpt = document.getElementById("departamentos").value;
   let palabra = document.getElementById("palabra").value;
   let localizacion = document.getElementById("localizacion").value;
@@ -82,15 +82,9 @@ function buscar() {
     body: JSON.stringify({ url }), // Enviar solo la URL como objeto JSON
     //esprea el json desde el server
   })
-    .then((respuesta) => {
-      if (respuesta !== 504) {
-        respuesta.json();
-      } else {
-        alert("momento hosting sin pagar plata");
-        hideLoader();
-        return;
-      }
-    })
+    .then((respuesta) => 
+      respuesta.json()
+  )
     .then((datos) => {
       document.getElementById("contenedorGeneral").innerHTML = "";
       //global contiene todos los objetos ya paginados
@@ -102,7 +96,7 @@ function buscar() {
       for (const element of objetos[0]) {
         hacerCard(element);
       }
-      hideLoader();
+      hideLoader()
     });
 }
 
@@ -143,7 +137,7 @@ function hacerCard(obra) {
   let titulo = document.createElement("h3");
   let cultura = document.createElement("h4");
   let dinastia = document.createElement("h4");
-  let id = obra.objectID;
+  let id=obra.objectID
 
   if (obra.primaryImage !== "") {
     img.src = obra.primaryImageSmall;
@@ -174,8 +168,9 @@ function hacerCard(obra) {
   carta.appendChild(dinastia);
 
   if (obra.additionalImages == "") {
-  } else {
-    console.log("id del objeto:" + obra.objectID);
+    
+  }else{
+    console.log('id del objeto:'+obra.objectID)
     let link = document.createElement("a");
     let boton = document.createElement("button");
     boton.innerHTML = "mas imagenes";
@@ -212,7 +207,7 @@ function atras() {
     pagina = 0;
   }
   document.getElementById("contenedorGeneral").innerHTML = "";
-  document.getElementById("pagina").innerHTML = `pagina:${pagina + 1} de ${
+  document.getElementById("pagina").innerHTML = `pagina:${pagina+1} de ${
     objetos.length - 1
   }`;
   for (const element of objetos[pagina]) {
@@ -228,7 +223,7 @@ function adelante() {
     pagina = objetos.length - 1;
   }
   document.getElementById("contenedorGeneral").innerHTML = "";
-  document.getElementById("pagina").innerHTML = `pagina:${pagina + 1} de ${
+  document.getElementById("pagina").innerHTML = `pagina:${pagina+1} de ${
     objetos.length - 1
   }`;
   for (const element of objetos[pagina]) {

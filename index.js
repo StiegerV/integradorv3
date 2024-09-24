@@ -1,10 +1,20 @@
-let express = require("express");
-app = express();
-const path = require("path");
-const translate = require("node-google-translate-skidz");
-const favicon = require("serve-favicon");
-const port=process.env.PORT || 8000
-console.clear();
+import express from "express";
+import path from "path";
+import translate from "node-google-translate-skidz";
+import favicon from "serve-favicon";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+//import cors from "cors"
+const app=express()
+const port = process.env.PORT || 8000;
+// Obtener __filename y __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
+
+//app.use(cors());
+
 // setea el favicon icono del documento
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
@@ -24,7 +34,7 @@ app.post("/Buscar", async (req, res) => {
   let url = req.body.url;
   let ids = await traerIds(url);
   //trae unicamente 150 por vercek
-  if (ids.length > 150) {
+  if (ids.length > 500) {
     ids = ids.slice(0, Math.min(ids.length, 150));
   }
 
