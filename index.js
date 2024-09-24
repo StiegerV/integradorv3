@@ -30,7 +30,7 @@ app.use(express.json()); // Para manejar JSON
 app.listen(port);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "museo.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.post("/Buscar", async (req, res) => {
