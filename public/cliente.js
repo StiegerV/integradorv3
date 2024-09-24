@@ -192,7 +192,7 @@ var pagina = 0;
 function paginado(ids) {
   let a = 20;
   const segmentos = [];
-console.log('se metio')
+
   for (let i = 0; i < ids.length; i += a) {
     segmentos.push(ids.slice(i, i + a));
   }

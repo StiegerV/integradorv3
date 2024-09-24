@@ -3,7 +3,7 @@ app = express();
 const path = require("path");
 const translate = require("node-google-translate-skidz");
 const favicon = require("serve-favicon");
-
+const port=process.env.PORT || 8000
 console.clear();
 // setea el favicon icono del documento
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // Para manejar JSON
 
-app.listen(8000);
+app.listen(port);
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "museo.html"));
