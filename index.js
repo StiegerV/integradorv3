@@ -18,7 +18,7 @@ const __dirname = dirname(__filename);
 // setea el favicon icono del documento
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static((__dirname, "public")));
 
 /* middleware que parsea el body de la url. necesario para leer los datos enviados por el form*/
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +27,7 @@ app.use(express.json()); // Para manejar JSON
 app.listen(port);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "museo.html"));
+  res.sendFile(path.join(__dirname, "museo.html"));
 });
 
 app.post("/Buscar", async (req, res) => {
