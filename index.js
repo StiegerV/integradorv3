@@ -1,24 +1,26 @@
 import express from "express";
+import cors from "cors";
 import path from "path";
 import translate from "node-google-translate-skidz";
-import favicon from "serve-favicon";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-//import cors from "cors"
-const app=express()
+const __filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+const app = express();
+app.use(cors());
 const port = process.env.PORT || 8000;
 // Obtener __filename y __dirname
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
-
-
-//app.use(cors());
+let fetch;
+(async () => {
+    const module = await import('node-fetch');
+    fetch = module.default;
+})();
 
 // setea el favicon icono del documento
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname + '/public/'));
 
 /* middleware que parsea el body de la url. necesario para leer los datos enviados por el form*/
 app.use(express.urlencoded({ extended: true }));
