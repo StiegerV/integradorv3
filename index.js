@@ -20,12 +20,12 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "museo.html"));
 });
 
-app.post("/", async (req, res) => {
+app.post("/Buscar", async (req, res) => {
   let url = req.body.url;
   let ids = await traerIds(url);
-  //trae unicamente 500
-  if (ids.length > 500) {
-    ids = ids.slice(0, Math.min(ids.length, 500));
+  //trae unicamente 150 por vercek
+  if (ids.length > 150) {
+    ids = ids.slice(0, Math.min(ids.length, 150));
   }
 
   //fetch a cada id
