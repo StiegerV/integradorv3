@@ -1,12 +1,17 @@
 console.log("cliente conectado");
 
 async function departamentos() {
-  let respuesta = await fetch(
-    "https://collectionapi.metmuseum.org/public/collection/v1/departments"
-  );
-  let datos = await respuesta.json();
-
-  return datos;
+  try {
+    let respuesta = await fetch(
+      "https://collectionapi.metmuseum.org/public/collection/v1/departments"
+    );
+    let datos = await respuesta.json();
+  
+    return datos;
+  } catch (error) {
+    alert(`oh no parece que la api del museo esta teniendo problemas en este momento ${error}`)
+  }
+ 
 }
 
 async function cargarDepartamentos() {
@@ -74,28 +79,41 @@ function buscar() {
   let url = filtro(dpt, palabra, localizacion);
   console.log("URL:", url);
 
-  fetch("/Buscar", {
-    method: "POST", // método HTTP
+fetch("/Buscar", {
+    method: "POST",
     headers: {
-      "Content-Type": "application/json", // tipo de contenido
+        "Content-Type": "application/json",
     },
-    body: JSON.stringify({ url }), // Enviar solo la URL como objeto JSON
-    //esprea el json desde el server
-  })
-    .then((respuesta) => respuesta.json())
-    .then((datos) => {
-      document.getElementById("contenedorGeneral").innerHTML = "";
-      //global contiene todos los objetos ya paginados
-      objetos = paginado(datos);
-      pagina = 0;
-      document.getElementById("pagina").innerHTML = `pagina:${pagina + 1} de ${
-        objetos.length
-      }`;
-      for (const element of objetos[0]) {
+    body: JSON.stringify({ url }),
+})
+.then((respuesta) => {
+    if (!respuesta.ok) {
+        throw new Error('Fallo en la respuesta del servidor,por favor intente de nuevo con parametros distintos');
+    }
+    return respuesta.json();
+})
+.then((datos) => {
+    document.getElementById("contenedorGeneral").innerHTML = "";
+    objetos = paginado(datos);
+    pagina = 0;
+    if (objetos.length>0) {
+      document.getElementById("pagina").innerHTML = `pagina:${pagina + 1} de ${objetos.length}`;
+    }
+    
+    for (const element of objetos[0]) {
         hacerCard(element);
-      }
-      hideLoader();
-    });
+    }
+    hideLoader();
+})
+.catch((error) => {
+    hideLoader();
+    if (error instanceof SyntaxError) {
+        alert(`Debido a limitaciones técnicas del host, tu búsqueda se ha cancelado: ${error}`);
+    } else {
+        alert('Parece que tu búsqueda no ha encontrado ningún objeto :(');
+    }
+});
+ 
 }
 
 function filtro(dpt, palabra, localizacion) {

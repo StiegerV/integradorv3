@@ -26,9 +26,8 @@ app.use(express.static(__dirname + '/public/'));
 /* middleware que parsea el body de la url. necesario para leer los datos enviados por el form*/
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // Para manejar JSON
-// -------------------------------------------------
 
-// Ruta para servir el archivo HTML principal
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
