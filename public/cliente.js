@@ -1,17 +1,16 @@
-
-
 async function departamentos() {
   try {
     let respuesta = await fetch(
       "https://collectionapi.metmuseum.org/public/collection/v1/departments"
     );
     let datos = await respuesta.json();
-  
+
     return datos;
   } catch (error) {
-    alert(`oh no parece que la api del museo esta teniendo problemas en este momento ${error}`)
+    alert(
+      `oh no parece que la api del museo esta teniendo problemas en este momento ${error}`
+    );
   }
- 
 }
 
 async function cargarDepartamentos() {
@@ -77,47 +76,54 @@ function buscar() {
 
   // Crear la URL usando la función filtro
   let url = filtro(dpt, palabra, localizacion);
-  
 
-fetch("/Buscar", {
+  fetch("/Buscar", {
     method: "POST",
     headers: {
-        "Content-Type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ url }),
-})
-.then((respuesta) => {
-    if (!respuesta.ok) {
-        throw new Error('Fallo en la respuesta del servidor,por favor intente de nuevo con parametros distintos');
-        hideLoader();
-        alert(error);
-    }
-    return respuesta.json();
-})
-.then((datos) => {
-    document.getElementById("contenedorGeneral").innerHTML = "";
-    objetos = paginado(datos);
-    pagina = 0;
-    if (objetos.length>0) {
-      document.getElementById("pagina").innerHTML = `pagina:${pagina + 1} de ${objetos.length}`;
-    }else{
-      document.getElementById("pagina").innerHTML =""
-    }
-    
-    for (const element of objetos[0]) {
+  })
+    .then((respuesta) => {
+      if (!respuesta.ok) {
+        if (respuesta.status === 504) {
+          hideLoader()
+          alert("El servidor no respondió a tiempo. Por favor, intenta de nuevo más tarde.");
+        }
+
+        throw new Error(
+          "Fallo en la respuesta del servidor,por favor intente de nuevo con parametros distintos"
+        );
+      }
+      return respuesta.json();
+    })
+    .then((datos) => {
+      document.getElementById("contenedorGeneral").innerHTML = "";
+      objetos = paginado(datos);
+      pagina = 0;
+      if (objetos.length > 0) {
+        document.getElementById("pagina").innerHTML = `pagina:${
+          pagina + 1
+        } de ${objetos.length}`;
+      } else {
+        document.getElementById("pagina").innerHTML = "";
+      }
+
+      for (const element of objetos[0]) {
         hacerCard(element);
-    }
-    hideLoader();
-})
-.catch((error) => {
-    hideLoader();
-    if (error instanceof SyntaxError) {
-        alert(`Debido a limitaciones técnicas del host, tu búsqueda se ha cancelado: ${error}`);
-    } else {
-        alert('Parece que tu búsqueda no ha encontrado ningún objeto :(');
-    }
-});
- 
+      }
+      hideLoader();
+    })
+    .catch((error) => {
+      hideLoader();
+      if (error instanceof SyntaxError) {
+        alert(
+          `Debido a limitaciones técnicas del host, tu búsqueda se ha cancelado: ${error}`
+        );
+      } else {
+        alert("Parece que tu búsqueda no ha encontrado ningún objeto :(");
+      }
+    });
 }
 
 function filtro(dpt, palabra, localizacion) {
@@ -127,7 +133,6 @@ function filtro(dpt, palabra, localizacion) {
     url = `https://collectionapi.metmuseum.org/public/collection/v1/search?geoLocation=${localizacion}&q=${palabra}&DepartmentId=${dpt}`;
     return url;
   } else if (dpt != 99 && localizacion != "") {
-   
     url = `https://collectionapi.metmuseum.org/public/collection/v1/search?geoLocation=${localizacion}&q=*&DepartmentId=${dpt}`;
     return url;
   } else if (dpt != 99 && palabra != "") {
@@ -189,12 +194,11 @@ function hacerCard(obra) {
 
   if (obra.additionalImages == "") {
   } else {
-
     let link = document.createElement("a");
-    link.target="_blank"
+    link.target = "_blank";
     let boton = document.createElement("button");
     boton.innerHTML = "mas imagenes";
-    boton.classList.add('boton')
+    boton.classList.add("boton");
     link.href = `imgExtra.html?objeto=${obra.objectID}`;
     link.appendChild(boton);
     carta.appendChild(link);
@@ -234,8 +238,6 @@ function atras() {
   for (const element of objetos[pagina]) {
     hacerCard(element);
   }
-
-
 }
 
 function adelante() {
