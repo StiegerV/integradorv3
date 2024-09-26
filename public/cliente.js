@@ -89,6 +89,8 @@ fetch("/Buscar", {
 .then((respuesta) => {
     if (!respuesta.ok) {
         throw new Error('Fallo en la respuesta del servidor,por favor intente de nuevo con parametros distintos');
+        hideLoader();
+        alert(error);
     }
     return respuesta.json();
 })
