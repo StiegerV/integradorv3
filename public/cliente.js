@@ -1,4 +1,4 @@
-console.log("cliente conectado");
+
 
 async function departamentos() {
   try {
@@ -77,7 +77,7 @@ function buscar() {
 
   // Crear la URL usando la función filtro
   let url = filtro(dpt, palabra, localizacion);
-  console.log("URL:", url);
+  
 
 fetch("/Buscar", {
     method: "POST",
@@ -127,7 +127,7 @@ function filtro(dpt, palabra, localizacion) {
     url = `https://collectionapi.metmuseum.org/public/collection/v1/search?geoLocation=${localizacion}&q=${palabra}&DepartmentId=${dpt}`;
     return url;
   } else if (dpt != 99 && localizacion != "") {
-    console.log("segundo if");
+   
     url = `https://collectionapi.metmuseum.org/public/collection/v1/search?geoLocation=${localizacion}&q=*&DepartmentId=${dpt}`;
     return url;
   } else if (dpt != 99 && palabra != "") {
@@ -189,7 +189,7 @@ function hacerCard(obra) {
 
   if (obra.additionalImages == "") {
   } else {
-    console.log("id del objeto:" + obra.objectID);
+
     let link = document.createElement("a");
     link.target="_blank"
     let boton = document.createElement("button");
@@ -235,7 +235,7 @@ function atras() {
     hacerCard(element);
   }
 
-  console.log(pagina);
+
 }
 
 function adelante() {
