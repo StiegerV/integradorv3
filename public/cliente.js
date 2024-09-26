@@ -98,6 +98,8 @@ fetch("/Buscar", {
     pagina = 0;
     if (objetos.length>0) {
       document.getElementById("pagina").innerHTML = `pagina:${pagina + 1} de ${objetos.length}`;
+    }else{
+      document.getElementById("pagina").innerHTML =""
     }
     
     for (const element of objetos[0]) {
