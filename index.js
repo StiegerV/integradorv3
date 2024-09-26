@@ -1,25 +1,17 @@
 import express, { text } from 'express';
 import fetch from 'node-fetch';
-
-// lib traduccion 
 import translate from 'node-google-translate-skidz';
-
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
-//const port = 3000;
-
 const port = process.env.PORT || 3000;
 
-// Middleware para servir archivos estáticos
-
-// app.use(express.static('public'));
 
 app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`);
+ console.log('callback')
 });
 
 app.use(express.static(__dirname + '/public/'));
