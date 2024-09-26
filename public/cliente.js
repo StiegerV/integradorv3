@@ -189,8 +189,10 @@ function hacerCard(obra) {
   } else {
     console.log("id del objeto:" + obra.objectID);
     let link = document.createElement("a");
+    link.target="_blank"
     let boton = document.createElement("button");
     boton.innerHTML = "mas imagenes";
+    boton.classList.add('boton')
     link.href = `imgExtra.html?objeto=${obra.objectID}`;
     link.appendChild(boton);
     carta.appendChild(link);

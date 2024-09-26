@@ -7,9 +7,9 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F152%2F718%2Foriginal%2Fdark-floral-or-ornament-seamless-pattern-background-elegant-luxury-texture-backgrounds-vector.jpg&f=1&nofb=1&ipt=bac6c5350d53d6a8989385c55a289f781cbeb6bf05960eac4d309514b0412e8b&ipo=images");
-  background-repeat: repeat; 
-  background-size: cover; 
-  background-position: center; 
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 #footer {
@@ -27,6 +27,7 @@ body {
   grid-template-columns: repeat(4, 1fr); /* Crea una grilla de 4 columnas */
   gap: 20px; /* Espacio entre las tarjetas */
   padding: 20px; /* Espacio interno del contenedor */
+  
 }
 
 /* Estilo para cada tarjeta de objeto de arte */
@@ -37,6 +38,12 @@ body {
   overflow: hidden; /* Para que la imagen no se desborde */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para un efecto elevado */
   transition: transform 0.3s; /* Transición suave para el efecto hover */
+  
+}
+.boton{
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 .carta:hover {
@@ -78,6 +85,17 @@ h1 {
   color: #ecf0f1;
   padding: 20px 0;
   text-align: center;
+  margin-bottom: 1%;
+  input{
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+  select{
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
 }
 
 .cont-carga {
@@ -132,20 +150,23 @@ h1 {
   border-radius: 8px; /* Bordes redondeados */
   box-shadow: 0 2px 8px rgba(89, 90, 7, 0.1); /* Sombra sutil */
   transition: transform 0.3s; /* Efecto de transición al hacer hover */
+  
 }
 
 #imagenes img:hover {
   transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
 }
 
-#botones_paginado{
+#botones_paginado {
   display: flex;
   justify-content: space-around;
   color: #ecf0f1;
-  input{
+  
+  input {
     border-radius: 8px;
-    color: gray;
-
+    width: 75px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
   }
 }
-
